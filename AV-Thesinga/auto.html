@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fahrzeugdetails</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <h1>Fahrzeugdetails</h1>
+    <a href="autos.html" class="btn">Zurück zur Übersicht</a>
+</header>
+
+<section id="auto-details" class="auto-details">
+    <p>Fahrzeugdaten werden geladen…</p>
+</section>
+
+<footer>
+    <a href="impressum.html">Impressum</a> |
+    <a href="datenschutz.html">Datenschutz</a>
+</footer>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const slug = urlParams.get('auto');
+
+fetch('/autos/' + slug)
+    .then(response => response.json())
+    .then(auto => {
+        const container = document.getElementById('auto-details');
+        container.innerHTML = `
+            <h2>${auto.titel}</h2>
+            <div class="galerie">
+                ${auto.bilder.map(b => `<img src="${b}" class="galerie-bild">`).join('')}
+            </div>
+            <p><strong>Preis:</strong> ${auto.preis} €</p>
+            <p><strong>Kilometerstand:</strong> ${auto.kilometer} km</p>
+            <p><strong>Baujahr:</strong> ${auto.baujahr}</p>
+            <p><strong>Leistung:</strong> ${auto.ps} PS</p>
+            <p><strong>Kraftstoff:</strong> ${auto.kraftstoff}</p>
+            <p><strong>Getriebe:</strong> ${auto.getriebe}</p>
+
+            <a class="btn" href="https://wa.me/491746841146">Über WhatsApp anfragen</a>
+            <a class="btn" href="mailto:av-thesinga@gmx.de">Per E-Mail anfragen</a>
+        `;
+    });
+</script>
+
+</body>
+</html>

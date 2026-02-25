@@ -1,0 +1,27 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "autos"
+    label: "Fahrzeuge"
+    folder: "autos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titel", name: "titel", widget: "string" }
+      - { label: "Preis", name: "preis", widget: "number" }
+      - { label: "Kilometerstand", name: "kilometer", widget: "number" }
+      - { label: "Baujahr", name: "baujahr", widget: "number" }
+      - { label: "PS", name: "ps", widget: "number" }
+      - { label: "Kraftstoff", name: "kraftstoff", widget: "string" }
+      - { label: "Getriebe", name: "getriebe", widget: "string" }
+      - label: "Bilder"
+        name: "bilder"
+        widget: "list"
+        allow_add: true
+        max: 10
+        field: { label: "Bild", name: "bild", widget: "image" }
