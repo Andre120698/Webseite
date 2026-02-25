@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Andre120698/webseite1
   branch: main
+
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
@@ -24,4 +26,5 @@ collections:
         widget: "list"
         allow_add: true
         max: 10
+
         field: { label: "Bild", name: "bild", widget: "image" }
